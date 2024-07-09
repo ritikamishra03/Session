@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Authentication</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <nav>
+      <% if logged_in? %>
+        <%= link_to 'logout',logout_path%><!--Changed to Get request -->
+      <% else %>
+        <%= link_to 'SignUp', signup_path %>
+        <%= link_to 'Login' ,login_path %>
+      <% end %>
+
+      <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: name %>
+      <% end -%>
+    </nav>
+    <%= yield %>
+  </body>
+</html>
